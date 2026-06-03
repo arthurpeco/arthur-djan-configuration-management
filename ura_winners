@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+class UmaMusume {
+    private String nome;
+    private int vitoriasG1Reais;
+    private String estiloCorrida;
+    private String destaque;
+
+    public UmaMusume(String nome, int vitoriasG1Reais, String estiloCorrida, String destaque) {
+        this.nome = nome;
+        this.vitoriasG1Reais = vitoriasG1Reais;
+        this.estiloCorrida = estiloCorrida;
+        this.destaque = destaque;
+    }
+
+    public int getVitoriasG1Reais() {
+        return vitoriasG1Reais;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%-15s | %-11d | %-10s | %s", nome, vitoriasG1Reais, estiloCorrida, destaque);
+    }
+}
+
+public class TorneioURA {
+    public static void main(String[] args) {
+        List<UmaMusume> umas = new ArrayList<>();
+
+        umas.add(new UmaMusume("Symboli Rudolf", 7, "Betweener", "O 'Imperador'. Símbolo de perfeição e Tríplice Coroado invicto."));
+        umas.add(new UmaMusume("T.M. Opera O", 7, "Leader", "O 'Rei do Século'. Venceu todas as 8 corridas que disputou no ano 2000."));
+        umas.add(new UmaMusume("Kitasan Black", 7, "Runner", "Estrela de resistência absurda e protagonista da 3ª temporada do anime."));
+        umas.add(new UmaMusume("Gold Ship", 6, "Chaser", "Famoso por sua força bruta e personalidade completamente caótica."));
+        umas.add(new UmaMusume("Narita Brian", 5, "Betweener", "O 'Monstro das Sombras', outro brilhante vencedor da Tríplice Coroa."));
+        umas.add(new UmaMusume("Special Week", 4, "Betweener", "A protagonista original! Fez história ao vencer a prestigiada Japan Cup."));
+        umas.add(new UmaMusume("Tokai Teio", 4, "Leader", "O 'Menino Prodígio' que superou múltiplas fraturas para um retorno milagroso."));
+
+        umas.sort(Comparator.comparingInt(UmaMusume::getVitoriasG1Reais).reversed());
+
+        System.out.println("=== LENDAS DA URA E SEUS G1s NA VIDA REAL ===");
+        System.out.println("Nome            | Vitórias G1 | Estilo     | Destaque");
+        System.out.println("---------------------------------------------------------------------------------------------------------");
+        
+        for (UmaMusume uma : umas) {
+            System.out.println(uma);
+        }
+    }
+}
